@@ -13,6 +13,7 @@
               label="Email"
               variant="outlined"
               data-cy="email"
+              id="email"
               clearable
               v-model="form.email"
             ></v-text-field>
@@ -32,6 +33,7 @@
               label="Password"
               variant="outlined"
               data-cy="password"
+              id="password"
               :type="isHide ? 'password' : 'text'"
               @click:prepend-inner="isHide = !isHide"
               clearable
@@ -88,6 +90,7 @@ const rules: Rules = {
     min: 5,
     max: 20,
     required: true,
+    message: 'Password is required field.',
   },
   email: [
     {
