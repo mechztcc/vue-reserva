@@ -9,21 +9,37 @@
             conta.</span
           >
           <v-form class="mt-10" v-on:submit.prevent="submit">
-            <v-text-field
-              prepend-inner-icon="mdi-email"
-              label="Email"
-              variant="outlined"
-              data-cy="email"
-              v-model="form.email"
-            ></v-text-field>
+            <div class="d-flex flex-column mb-5">
+              <v-text-field
+                prepend-inner-icon="mdi-email"
+                label="Email"
+                variant="outlined"
+                data-cy="email"
+                clearable
+                v-model="form.email"
+              ></v-text-field>
 
-            <v-text-field
-              prepend-inner-icon="mdi-lock"
-              label="Password"
-              variant="outlined"
-              data-cy="password"
-              v-model="form.password"
-            ></v-text-field>
+              <small class="text-red" v-if="errorFields.email">
+                {{ errorFields.email[0].message }}
+              </small>
+            </div>
+
+            <div class="d-flex flex-column mb-5">
+              <v-text-field
+                prepend-inner-icon="mdi-lock"
+                label="Password"
+                variant="outlined"
+                data-cy="password"
+                :type="isHide ? 'password' : 'text'"
+                @click:prepend-inner="isHide = !isHide"
+                clearable
+                v-model="form.password"
+              ></v-text-field>
+
+              <small class="text-red" v-if="errorFields.password">
+                {{ errorFields.password[0].message }}
+              </small>
+            </div>
 
             <span class="text-primary">Esqueceu a senha?</span>
 
@@ -55,10 +71,33 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import { useAsyncValidator } from "@vueuse/integrations/useAsyncValidator";
+import type { Rules } from "async-validator";
+import { ref } from "vue";
 
 const form = reactive<{ email?: string; password?: string }>({});
+const isHide = ref(true);
+const rules: Rules = {
+  password: {
+    type: "string",
+    min: 5,
+    max: 20,
+    required: true,
+  },
+  email: [
+    {
+      type: "email",
+      required: true,
+      message: "E-mail is required field.",
+    },
+  ],
+};
+
+const { pass, isFinished, errorFields } = useAsyncValidator(form, rules);
 
 const submit = () => {
+  if (!pass.value) return;
+
   console.log(form);
 };
 </script>
