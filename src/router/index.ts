@@ -1,5 +1,5 @@
 // Composables
-import authRouter from "@/modules/auth/authRoutes";
+import authRouter from "@/modules/auth/routes";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [...authRouter];

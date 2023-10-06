@@ -2,93 +2,98 @@
   <v-container>
     <v-row>
       <v-col cols="10" md="6" offset="1" offset-md="3">
-        <v-card class="pa-5">
-          <h1>Bem-vindo!</h1>
-          <span
-            >Bem vindo de volta, preencha os campos abaixo para acessar sua
-            conta.</span
-          >
-          <v-form class="mt-10" v-on:submit.prevent="submit">
-            <div class="d-flex flex-column mb-5">
-              <v-text-field
-                prepend-inner-icon="mdi-email"
-                label="Email"
-                variant="outlined"
-                data-cy="email"
-                clearable
-                v-model="form.email"
-              ></v-text-field>
+        <h1>Bem-vindo!</h1>
+        <span>
+          Bem vindo de volta, preencha os campos abaixo para acessar sua conta.
+        </span>
+        <v-form class="mt-10" v-on:submit.prevent="submit">
+          <div class="d-flex flex-column mb-5">
+            <v-text-field
+              prepend-inner-icon="mdi-email"
+              label="Email"
+              variant="outlined"
+              data-cy="email"
+              clearable
+              v-model="form.email"
+            ></v-text-field>
 
-              <small class="text-red" v-if="errorFields.email">
-                {{ errorFields.email[0].message }}
-              </small>
-            </div>
-
-            <div class="d-flex flex-column mb-5">
-              <v-text-field
-                prepend-inner-icon="mdi-lock"
-                label="Password"
-                variant="outlined"
-                data-cy="password"
-                :type="isHide ? 'password' : 'text'"
-                @click:prepend-inner="isHide = !isHide"
-                clearable
-                v-model="form.password"
-              ></v-text-field>
-
-              <small class="text-red" v-if="errorFields.password">
-                {{ errorFields.password[0].message }}
-              </small>
-            </div>
-
-            <span class="text-primary">Esqueceu a senha?</span>
-
-            <v-btn
-              class="mt-5"
-              color="primary"
-              size="large"
-              block
-              type="submit"
-              data-cy="submit"
+            <small
+              data-cy="email-error"
+              class="text-red"
+              v-if="errorFields.email"
             >
-              Continuar
-            </v-btn>
+              {{ errorFields.email[0].message }}
+            </small>
+          </div>
 
-            <hr class="my-6" />
+          <div class="d-flex flex-column mb-5">
+            <v-text-field
+              prepend-inner-icon="mdi-lock"
+              label="Password"
+              variant="outlined"
+              data-cy="password"
+              :type="isHide ? 'password' : 'text'"
+              @click:prepend-inner="isHide = !isHide"
+              clearable
+              v-model="form.password"
+            ></v-text-field>
 
-            <div class="text-center">
-              <span>
-                Não possui uma conta?
-                <b class="text-primary mx-2"> Criar conta </b>
-              </span>
-            </div>
-          </v-form>
-        </v-card>
+            <small
+              data-cy="password-error"
+              class="text-red"
+              v-if="errorFields.password"
+            >
+              {{ errorFields.password[0].message }}
+            </small>
+          </div>
+
+          <span class="text-primary">Esqueceu a senha?</span>
+
+          <v-btn
+            class="mt-5"
+            color="secondary"
+            size="large"
+            block
+            type="submit"
+            data-cy="submit"
+          >
+            Continuar
+          </v-btn>
+
+          <hr class="my-6" />
+
+          <div class="text-center">
+            <span>
+              Não possui uma conta?
+              <b class="text-primary mx-2"> Criar conta </b>
+            </span>
+          </div>
+        </v-form>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
-import { useAsyncValidator } from "@vueuse/integrations/useAsyncValidator";
-import type { Rules } from "async-validator";
-import { ref } from "vue";
+import { reactive } from 'vue';
+import { useAsyncValidator } from '@vueuse/integrations/useAsyncValidator';
+import type { Rules } from 'async-validator';
+import { ref } from 'vue';
 
 const form = reactive<{ email?: string; password?: string }>({});
 const isHide = ref(true);
 const rules: Rules = {
   password: {
-    type: "string",
+    type: 'string',
     min: 5,
     max: 20,
     required: true,
   },
   email: [
     {
-      type: "email",
+      type: 'email',
       required: true,
-      message: "E-mail is required field.",
+      message: 'E-mail is required field.',
     },
   ],
 };
@@ -97,8 +102,6 @@ const { pass, isFinished, errorFields } = useAsyncValidator(form, rules);
 
 const submit = () => {
   if (!pass.value) return;
-
-  console.log(form);
 };
 </script>
 
