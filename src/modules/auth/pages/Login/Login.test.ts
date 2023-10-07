@@ -40,4 +40,19 @@ test('When mount component', () => {
     expect(emailError.text()).contains('E-mail is required field');
     expect(passwordError.text()).contains('Password is required field');
   });
+
+  it('Should hide errors messages when fill inputs with valid values', () => {
+    const email = wrapper.find('input#email');
+    email.setValue('albertopaiva2812@gmail.com');
+
+    const emailError = wrapper.find('small[data-cy="email-error"]');
+
+    const password = wrapper.find('input#password');
+    password.setValue('123456789!a');
+
+    const passwordError = wrapper.find('small[data-cy="password-error"]');
+
+    expect(emailError).toBeUndefined();
+    expect(passwordError).toBeUndefined();
+  });
 });

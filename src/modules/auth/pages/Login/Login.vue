@@ -103,15 +103,13 @@ const rules: Rules = {
   ],
 };
 
-const response = ref<any>({});
-
-const { pass, isFinished, errorFields } = useAsyncValidator(form, rules);
+const { pass, errorFields } = useAsyncValidator(form, rules);
 
 const submit = async () => {
   if (!pass.value) return;
 
   isLoading.value = true;
-  const { data } = await login({ email: form.email, password: form.password });
+  await login({ email: form.email, password: form.password });
   isLoading.value = false;
 };
 </script>
