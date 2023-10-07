@@ -58,7 +58,7 @@
             block
             type="submit"
             data-cy="submit"
-            :loading="response.isLoading"
+            :loading="isLoading"
           >
             Continuar
           </v-btn>
@@ -78,14 +78,14 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { login } from '@/modules/auth/services/AuthService/AuthService';
 import { useAsyncValidator } from '@vueuse/integrations/useAsyncValidator';
 import type { Rules } from 'async-validator';
-import { ref } from 'vue';
-import { login } from '@/modules/auth/services/AuthService/AuthService';
+import { reactive, ref } from 'vue';
 
 const form = reactive<{ email?: string; password?: string }>({});
 const isHide = ref(true);
+const isLoading = ref(false);
 const rules: Rules = {
   password: {
     type: 'string',
@@ -110,8 +110,9 @@ const { pass, isFinished, errorFields } = useAsyncValidator(form, rules);
 const submit = async () => {
   if (!pass.value) return;
 
-  response.value = login({ email: form.email, password: form.password });
-  console.log(response);
+  isLoading.value = true;
+  const { data } = await login({ email: form.email, password: form.password });
+  isLoading.value = false;
 };
 </script>
 
