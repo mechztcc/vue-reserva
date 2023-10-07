@@ -9,6 +9,8 @@
 //   $color-pack: false
 // );
 
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 .global-wrapper {
   min-height: 100vh;
   min-width: 100vw;
@@ -17,6 +19,9 @@
   justify-content: center;
 }
 
+* {
+  font-family: 'Rajdhani', sans-serif;
+}
 
 .v-input__details {
   display: none !important;

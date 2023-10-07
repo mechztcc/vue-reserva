@@ -14,6 +14,7 @@
     "@vueuse/core": "^10.4.1",
     "@vueuse/integrations": "^10.4.1",
     "async-validator": "^4.2.5",
+    "axios": "^1.5.1",
     "core-js": "^3.29.0",
     "pinia": "^2.0.0",
     "roboto-fontface": "*",

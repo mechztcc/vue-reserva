@@ -58,6 +58,7 @@
             block
             type="submit"
             data-cy="submit"
+            :loading="response.isLoading"
           >
             Continuar
           </v-btn>
@@ -81,13 +82,14 @@ import { reactive } from 'vue';
 import { useAsyncValidator } from '@vueuse/integrations/useAsyncValidator';
 import type { Rules } from 'async-validator';
 import { ref } from 'vue';
+import { login } from '@/modules/auth/services/AuthService/AuthService';
 
 const form = reactive<{ email?: string; password?: string }>({});
 const isHide = ref(true);
 const rules: Rules = {
   password: {
     type: 'string',
-    min: 5,
+    min: 8,
     max: 20,
     required: true,
     message: 'Password is required field.',
@@ -101,10 +103,15 @@ const rules: Rules = {
   ],
 };
 
+const response = ref<any>({});
+
 const { pass, isFinished, errorFields } = useAsyncValidator(form, rules);
 
-const submit = () => {
+const submit = async () => {
   if (!pass.value) return;
+
+  response.value = login({ email: form.email, password: form.password });
+  console.log(response);
 };
 </script>
 
