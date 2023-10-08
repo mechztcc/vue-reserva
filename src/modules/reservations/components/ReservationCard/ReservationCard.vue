@@ -2,7 +2,7 @@
   <v-card class="pa-5 mt-3">
     <v-row>
       <v-col sm="12" md="8">
-        <v-btn color="secondary" block>Aguardando contrato</v-btn>
+        <v-btn color="secondary" block>{{ reservation.statusName }}</v-btn>
       </v-col>
       <v-col sm="12" md="4" class="d-flex justify-end">
         <v-btn color="secondary">Ver</v-btn>
@@ -12,7 +12,7 @@
     <v-row>
       <v-col sm="12" md="6">
         <img class="img-size" src="@/assets/house.webp" alt="" />
-        <span class="text-primary">Apartamento na praia</span>
+        <span class="text-primary">{{ reservation.name }}</span>
       </v-col>
       <v-col sm="12" md="6">
         <span>Código da reserva</span>
@@ -24,7 +24,7 @@
         <span class="mt-4">Data da reserva</span>
         <div class="d-flex">
           <v-icon>mdi-calendar</v-icon>
-          <span>22/10/2023</span>
+          <span>{{ reservation.sendDate }}</span>
         </div>
 
         <div class="d-flex my-2">
@@ -59,7 +59,7 @@
 import { defineProps } from 'vue';
 import { IReservation } from '../../types/reservation.interface';
 
-const props = defineProps<{ reservation: IReservation }>();
+defineProps<{ reservation: IReservation }>();
 </script>
 
 <style lang="scss" scoped>

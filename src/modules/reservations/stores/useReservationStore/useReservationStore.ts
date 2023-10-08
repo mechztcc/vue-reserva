@@ -6,7 +6,7 @@ import { ref } from 'vue';
 export const useReservationsStore = defineStore('reservations-store', () => {
   const reservations = ref([] as IReservation[]);
 
-  function addReservations(data: []): void {
+  function addReservations(data: IReservation[]): void {
     reservations.value = data;
   }
 

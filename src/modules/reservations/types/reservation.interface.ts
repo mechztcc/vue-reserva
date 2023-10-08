@@ -8,5 +8,6 @@ export interface IReservation {
   paymentStatus: string;
   price: string;
   sendDate: string;
+  name: string;
   statusName: string;
 }
