@@ -18,7 +18,7 @@
         <span>Código da reserva</span>
         <div class="d-flex">
           <v-icon>mdi-pound</v-icon>
-          <b>JHY63UU</b>
+          <b>{{ data.codeTransaction }}</b>
         </div>
 
         <span class="mt-4">Data da reserva</span>
@@ -32,7 +32,7 @@
             <span>Checkin</span>
             <div class="d-flex">
               <v-icon>mdi-calendar-arrow-left</v-icon>
-              <span>22/10</span>
+              <span>{{ data.checkin }}</span>
             </div>
           </div>
 
@@ -40,7 +40,7 @@
             <span>Checkout</span>
             <div class="d-flex">
               <v-icon>mdi-calendar-arrow-right</v-icon>
-              <span>25/10</span>
+              <span>{{ data.checkout }}</span>
             </div>
           </div>
         </div>
@@ -48,14 +48,18 @@
         <span>Valor</span>
         <div class="d-flex">
           <v-icon>mdi-currency-usd</v-icon>
-          <span>R$ 500,00</span>
+          <span>R$ {{ data.price }}</span>
         </div>
       </v-col>
     </v-row>
   </v-card>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+const props = defineProps(['data']);
+</script>
 
 <style lang="scss" scoped>
 .img-size {
