@@ -10,6 +10,9 @@
 
 <script setup>
 import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
+import { index } from '../../services/ReservationService.ts';
+
+index();
 </script>
 
 <style lang="scss" scoped></style>
