@@ -1,8 +1,8 @@
 <template>
-  <v-card class="pa-5">
+  <v-card class="pa-5 mt-3">
     <v-row>
       <v-col sm="12" md="8">
-        <v-btn color="secondary">Aguardando contrato</v-btn>
+        <v-btn color="secondary" block>Aguardando contrato</v-btn>
       </v-col>
       <v-col sm="12" md="4" class="d-flex justify-end">
         <v-btn color="secondary">Ver</v-btn>
@@ -15,14 +15,40 @@
         <span class="text-primary">Apartamento na praia</span>
       </v-col>
       <v-col sm="12" md="6">
+        <span>Código da reserva</span>
         <div class="d-flex">
           <v-icon>mdi-pound</v-icon>
           <b>JHY63UU</b>
         </div>
 
+        <span class="mt-4">Data da reserva</span>
         <div class="d-flex">
           <v-icon>mdi-calendar</v-icon>
           <span>22/10/2023</span>
+        </div>
+
+        <div class="d-flex my-2">
+          <div class="d-flex flex-column">
+            <span>Checkin</span>
+            <div class="d-flex">
+              <v-icon>mdi-calendar-arrow-left</v-icon>
+              <span>22/10</span>
+            </div>
+          </div>
+
+          <div class="d-flex mx-5 flex-column">
+            <span>Checkout</span>
+            <div class="d-flex">
+              <v-icon>mdi-calendar-arrow-right</v-icon>
+              <span>25/10</span>
+            </div>
+          </div>
+        </div>
+
+        <span>Valor</span>
+        <div class="d-flex">
+          <v-icon>mdi-currency-usd</v-icon>
+          <span>R$ 500,00</span>
         </div>
       </v-col>
     </v-row>
