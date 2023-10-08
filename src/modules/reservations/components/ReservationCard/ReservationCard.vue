@@ -11,7 +11,7 @@
 
     <v-row>
       <v-col sm="12" md="6">
-        <img class="img-size" src="@/assets/house.webp" alt="" />
+        <img class="img-size" :src="reservation.image" alt="" />
         <span class="text-primary">{{ reservation.name }}</span>
       </v-col>
       <v-col sm="12" md="6">
@@ -64,7 +64,10 @@ defineProps<{ reservation: IReservation }>();
 
 <style lang="scss" scoped>
 .img-size {
-  min-width: 100%;
-  max-width: 100%;
+  min-height: 185px;
+  max-height: 185px;
+  max-width: 250px;
+  min-width: 250px;
+  object-fit: cover;
 }
 </style>

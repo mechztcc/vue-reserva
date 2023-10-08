@@ -15,6 +15,9 @@ export async function index() {
   const reservations = data.value as IReservation[];
 
   reservations.map((reservation, index) => {
+
+    data.value[index].image = `https://olinda-tech.top/reserva-direta-api/file/${reservation.image}`
+
     data.value[index].sendDate = useDateFormat(
       reservation.sendDate,
       'DD/MM/YYYY HH:mm',
