@@ -18,7 +18,7 @@
         <span>Código da reserva</span>
         <div class="d-flex">
           <v-icon>mdi-pound</v-icon>
-          <b>{{ data.codeTransaction }}</b>
+          <b>{{ reservation.codeTransaction }}</b>
         </div>
 
         <span class="mt-4">Data da reserva</span>
@@ -32,7 +32,7 @@
             <span>Checkin</span>
             <div class="d-flex">
               <v-icon>mdi-calendar-arrow-left</v-icon>
-              <span>{{ data.checkin }}</span>
+              <span>{{ reservation.checkin }}</span>
             </div>
           </div>
 
@@ -40,7 +40,7 @@
             <span>Checkout</span>
             <div class="d-flex">
               <v-icon>mdi-calendar-arrow-right</v-icon>
-              <span>{{ data.checkout }}</span>
+              <span>{{ reservation.checkout }}</span>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
         <span>Valor</span>
         <div class="d-flex">
           <v-icon>mdi-currency-usd</v-icon>
-          <span>R$ {{ data.price }}</span>
+          <span>R$ {{ reservation.price }}</span>
         </div>
       </v-col>
     </v-row>
@@ -57,8 +57,9 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { IReservation } from '../../types/reservation.interface';
 
-const props = defineProps(['data']);
+const props = defineProps<{ reservation: IReservation }>();
 </script>
 
 <style lang="scss" scoped>

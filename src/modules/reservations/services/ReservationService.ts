@@ -11,6 +11,5 @@ export async function index() {
   );
 
   store.addReservations(data);
-
   return data;
 }

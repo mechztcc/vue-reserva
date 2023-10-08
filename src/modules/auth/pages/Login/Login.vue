@@ -82,6 +82,7 @@ import { login } from '@/modules/auth/services/AuthService/AuthService';
 import { useAsyncValidator } from '@vueuse/integrations/useAsyncValidator';
 import type { Rules } from 'async-validator';
 import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const form = reactive<{ email?: string; password?: string }>({});
 const isHide = ref(true);
@@ -102,6 +103,7 @@ const rules: Rules = {
     },
   ],
 };
+const { push } = useRouter();
 
 const { pass, errorFields } = useAsyncValidator(form, rules);
 
@@ -111,6 +113,7 @@ const submit = async () => {
   isLoading.value = true;
   await login({ email: form.email, password: form.password });
   isLoading.value = false;
+  push({ path: '/reservations' });
 };
 </script>
 
