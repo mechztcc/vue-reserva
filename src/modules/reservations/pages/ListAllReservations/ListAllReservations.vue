@@ -25,7 +25,7 @@ import ReservationCard from '../../components/ReservationCard/ReservationCard.vu
 import ListAllReservationsFilters from '../../components/ListAllFilters/ListAllFilters.vue';
 import { index } from '../../services/ReservationService';
 import { useReservationsStore } from '../../stores/useReservationStore/useReservationStore';
-import { onBeforeMount, watch } from 'vue';
+import { onBeforeMount } from 'vue';
 
 const store = useReservationsStore();
 
