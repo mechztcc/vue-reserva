@@ -27,9 +27,15 @@ export const useReservationsStore = defineStore('reservations-store', {
       this.reservations = this.reservations.reverse();
     },
 
-    onFilterBy(name: string): void {
+    onFilterByName(name: string): void {
       this.reservationsFiltered = this.reservations.filter((res) => {
         return res.name.toLowerCase().includes(name.toLowerCase());
+      });
+    },
+
+    onFilterBy(status: number): void {
+      this.reservationsFiltered = this.reservations.filter((res) => {
+        return res.status === status;
       });
     },
   },

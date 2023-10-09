@@ -10,4 +10,5 @@ export interface IReservation {
   sendDate: string;
   name: string;
   statusName: string;
+  status: number;
 }
