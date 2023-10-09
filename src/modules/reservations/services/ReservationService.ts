@@ -6,8 +6,6 @@ import { IReservation } from '../types/reservation.interface';
 
 export async function index() {
   const store = useReservationsStore();
-  console.log(store);
-
   const { data } = await useAxios('/reservation/get-all', instance).catch(
     (err) => {
       alert(err.message);
@@ -37,6 +35,5 @@ export async function index() {
     );
   });
 
-  store.addReservation(data);
   return data;
 }

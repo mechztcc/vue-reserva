@@ -20,20 +20,19 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
-import ListAllReservationsFilters from '../../components/ListAllFilters/ListAllFilters.vue';
-import { index } from '../../services/ReservationService';
-import { useReservationsStore } from '../../stores/useReservationStore/useReservationStore';
-import { onBeforeMount } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { onBeforeMount } from 'vue';
+  import ListAllReservationsFilters from '../../components/ListAllFilters/ListAllFilters.vue';
+  import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
+  import { useReservationsStore } from '../../stores/useReservationStore/useReservationStore';
 
-const store = useReservationsStore();
+  const store = useReservationsStore();
 
-onBeforeMount(async () => {
-  await index();
-});
+  onBeforeMount(async () => {
+    await store.onListAll();
+  });
 
-const { reservationsFiltered } = storeToRefs(store);
+  const { reservationsFiltered } = storeToRefs(store);
 </script>
 
 <style lang="scss" scoped></style>

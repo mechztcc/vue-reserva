@@ -11,8 +11,14 @@
           v-model="search"
           @update:model-value="store.onFilterBy(search)"
         ></v-text-field>
-        <v-btn class="mx-5" color="secondary" size="large" @click="index()">
-          <v-icon>mdi-reload</v-icon>
+        <v-btn
+          class="mx-5"
+          color="secondary"
+          size="large"
+          @click="store.onListAll()"
+        >
+          <v-icon v-if="!store.isLoading">mdi-reload</v-icon>
+          <v-icon v-if="store.isLoading">mdi-loading</v-icon>
         </v-btn>
         <v-btn size="large" color="secondary" @click="store.onReverse()">
           <v-icon v-if="store.asc">mdi-order-alphabetical-ascending</v-icon>
@@ -26,8 +32,6 @@
 <script setup lang="ts">
   import { useReservationsStore } from '@/modules/reservations/stores/useReservationStore/useReservationStore';
   import { ref } from 'vue';
-
-  import { index } from '../../services/ReservationService';
 
   const search = ref('');
   const store = useReservationsStore();
