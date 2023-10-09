@@ -6,6 +6,8 @@ import { IReservation } from '../types/reservation.interface';
 
 export async function index() {
   const store = useReservationsStore();
+  console.log(store);
+
   const { data } = await useAxios('/reservation/get-all', instance).catch(
     (err) => {
       alert(err.message);
@@ -15,8 +17,9 @@ export async function index() {
   const reservations = data.value as IReservation[];
 
   reservations.map((reservation, index) => {
-
-    data.value[index].image = `https://olinda-tech.top/reserva-direta-api/file/${reservation.image}`
+    data.value[
+      index
+    ].image = `https://olinda-tech.top/reserva-direta-api/file/${reservation.image}`;
 
     data.value[index].sendDate = useDateFormat(
       reservation.sendDate,
@@ -33,6 +36,7 @@ export async function index() {
       'DD/MM/YYYY',
     );
   });
-  store.addReservations(data);
+
+  store.addReservation(data);
   return data;
 }

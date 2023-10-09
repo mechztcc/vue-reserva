@@ -1,7 +1,18 @@
 <template>
   <v-container>
     <v-row>
-      <v-col sm="12" md="6" v-for="(item, index) in reservations.value" :key="index">
+      <v-col>
+        <ListAllReservationsFilters />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        sm="12"
+        md="12"
+        lg="6"
+        v-for="(item, index) in reservationsFiltered"
+        :key="index"
+      >
         <ReservationCard :reservation="item" />
       </v-col>
     </v-row>
@@ -11,6 +22,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
+import ListAllReservationsFilters from '../../components/ListAllFilters/ListAllFilters.vue';
 import { index } from '../../services/ReservationService';
 import { useReservationsStore } from '../../stores/useReservationStore/useReservationStore';
 import { onBeforeMount, watch } from 'vue';
@@ -21,10 +33,7 @@ onBeforeMount(async () => {
   await index();
 });
 
-const { reservations } = storeToRefs(store);
-watch(reservations, () => {
-  console.log(reservations.value);
-});
+const { reservationsFiltered } = storeToRefs(store);
 </script>
 
 <style lang="scss" scoped></style>

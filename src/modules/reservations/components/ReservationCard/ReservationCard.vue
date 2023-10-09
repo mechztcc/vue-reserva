@@ -11,8 +11,10 @@
 
     <v-row>
       <v-col sm="12" md="6">
-        <img class="img-size" :src="reservation.image" alt="" />
-        <span class="text-primary">{{ reservation.name }}</span>
+        <div class="d-flex flex-column">
+          <img class="img-size" :src="reservation.image" alt="" />
+          <span class="text-primary">{{ reservation.name }}</span>
+        </div>
       </v-col>
       <v-col sm="12" md="6">
         <span>Código da reserva</span>
@@ -58,7 +60,9 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import { IReservation } from '../../types/reservation.interface';
+import { useReservationsStore } from '../../stores/useReservationStore/useReservationStore';
 
+const store = useReservationsStore();
 defineProps<{ reservation: IReservation }>();
 </script>
 
