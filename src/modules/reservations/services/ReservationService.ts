@@ -1,14 +1,16 @@
 import { instance } from '@/modules/config/axios';
 import { useDateFormat } from '@vueuse/core';
 import { useAxios } from '@vueuse/integrations/useAxios';
-import { useReservationsStore } from '../stores/useReservationStore/useReservationStore';
+import { useRouter } from 'vue-router';
 import { IReservation } from '../types/reservation.interface';
 
 export async function index() {
-  const store = useReservationsStore();
+  const router = useRouter();
   const { data } = await useAxios('/reservation/get-all', instance).catch(
     (err) => {
-      alert(err.message);
+      if (err.response.status == 401) {
+        router.push({ path: '/auth/login' });
+      }
     },
   );
 
