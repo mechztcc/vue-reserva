@@ -11,11 +11,19 @@
       <tr v-for="item in store.reservationsFiltered" :key="item.id">
         <td>{{ item.name }}</td>
         <td>{{ item.codeTransaction }}</td>
-        <td>{{ item.checkin }}</td>
-        <td>{{ item.checkin }}</td>
+        <td>
+          {{ item.checkin }}
+        </td>
+        <td>
+          {{ item.checkin }}
+        </td>
         <td>{{ item.sendDate }}</td>
         <td>R$ {{ item.price }}</td>
-        <td>{{ item.statusName }}</td>
+        <td>
+          <v-btn color="secondary" block>
+            {{ item.statusName }}
+          </v-btn>
+        </td>
         <td>
           <v-btn color="secondary">Ver</v-btn>
         </td>
@@ -38,7 +46,7 @@
     'Data do envio',
     'Preço',
     'Status',
-    'Ações'
+    'Ações',
   ]);
 </script>
 
