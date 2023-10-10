@@ -5,7 +5,7 @@
         <ListAllReservationsFilters />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="store.reservationsFiltered.length > 0">
       <v-col
         sm="12"
         md="12"
@@ -16,6 +16,8 @@
         <ReservationCard :reservation="item" />
       </v-col>
     </v-row>
+
+    <NotFound v-if="store.reservationsFiltered.length == 0" />
   </v-container>
 </template>
 
@@ -23,8 +25,10 @@
   import { storeToRefs } from 'pinia';
   import { onBeforeMount } from 'vue';
   import ListAllReservationsFilters from '../../components/ListAllFilters/ListAllFilters.vue';
-  import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
   import { useReservationsStore } from '../../stores/useReservationStore/useReservationStore';
+
+  import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
+  import NotFound from '../../components/NotFound/NotFound.vue';
 
   const store = useReservationsStore();
 

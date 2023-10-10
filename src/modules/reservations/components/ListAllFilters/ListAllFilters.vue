@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="8" md="6" offset-md="6">
+    <v-col cols="12" md="8" offset-md="4">
       <div class="d-flex">
         <v-text-field
           class="mx-2"
@@ -12,9 +12,13 @@
           v-model="search"
           @update:model-value="store.onFilterByName(search)"
         ></v-text-field>
-        <v-btn color="secondary" size="large" @click="store.onListAll()">
-          <v-icon v-if="!store.isLoading">mdi-reload</v-icon>
-          <v-icon v-if="store.isLoading">mdi-loading</v-icon>
+        <v-btn
+          color="secondary"
+          size="large"
+          @click="store.onListAll()"
+          :loading="store.isLoading"
+        >
+          <v-icon>mdi-reload</v-icon>
         </v-btn>
         <v-btn class="mx-2" color="secondary" size="large">
           <v-icon>mdi-filter</v-icon>
@@ -36,4 +40,9 @@
   const store = useReservationsStore();
 </script>
 
-<style scoped></style>
+<style scoped>
+  .rotate {
+    rotate: 360deg;
+    transition: rotate 4s;
+  }
+</style>
