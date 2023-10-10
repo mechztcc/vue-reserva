@@ -8,6 +8,7 @@ export const useReservationsStore = defineStore('reservations-store', {
     reservationsFiltered: [] as IReservation[],
     asc: true as boolean,
     isLoading: false as boolean,
+    isTableLayout: false as boolean,
   }),
   actions: {
     async onListAll(): Promise<void> {
@@ -25,6 +26,10 @@ export const useReservationsStore = defineStore('reservations-store', {
     onReverse(): void {
       this.asc = !this.asc;
       this.reservations = this.reservations.reverse();
+    },
+
+    onChangeLayout(): void {
+      this.isTableLayout = !this.isTableLayout;
     },
 
     onFilterByName(name: string): void {

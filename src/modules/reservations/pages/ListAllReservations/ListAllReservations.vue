@@ -5,7 +5,7 @@
         <ListAllReservationsFilters />
       </v-col>
     </v-row>
-    <v-row v-if="store.reservationsFiltered.length > 0">
+    <v-row v-if="store.reservationsFiltered.length > 0 && store.isTableLayout">
       <v-col
         sm="12"
         md="12"
@@ -17,6 +17,7 @@
       </v-col>
     </v-row>
 
+    <TableReservations v-if="!store.isTableLayout" />
     <NotFound v-if="store.reservationsFiltered.length == 0" />
   </v-container>
 </template>
@@ -29,6 +30,7 @@
 
   import ReservationCard from '../../components/ReservationCard/ReservationCard.vue';
   import NotFound from '../../components/NotFound/NotFound.vue';
+  import TableReservations from '../../components/TableReservations/TableReservations.vue';
 
   const store = useReservationsStore();
 
