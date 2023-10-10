@@ -1,6 +1,5 @@
 <template>
   <v-row>
-    <h1 class="mb-5">Minhas reservas</h1>
     <v-col cols="12" md="8" offset-md="4">
       <div class="d-flex">
         <v-text-field
@@ -28,7 +27,12 @@
           <v-icon v-if="store.asc">mdi-order-alphabetical-ascending</v-icon>
           <v-icon v-if="!store.asc">mdi-order-alphabetical-descending</v-icon>
         </v-btn>
-        <v-btn class="mx-2" size="large" color="secondary" @click="store.onChangeLayout()">
+        <v-btn
+          class="mx-2"
+          size="large"
+          color="secondary"
+          @click="store.onChangeLayout()"
+        >
           <v-icon v-if="store.isTableLayout">mdi-grid</v-icon>
           <v-icon v-if="!store.isTableLayout">mdi-view-grid</v-icon>
         </v-btn>

@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <div class="d-flex align-center mb-5">
+      <v-icon size="large">mdi-home-analytics</v-icon>
+      <h1 class="mx-2">Minhas reservas</h1>
+    </div>
+
     <v-row>
       <v-col>
         <ListAllReservationsFilters />
@@ -17,7 +22,9 @@
       </v-col>
     </v-row>
 
-    <TableReservations v-if="!store.isTableLayout" />
+    <TableReservations
+      v-if="!store.isTableLayout && store.reservationsFiltered.length > 0"
+    />
     <NotFound v-if="store.reservationsFiltered.length == 0" />
   </v-container>
 </template>
